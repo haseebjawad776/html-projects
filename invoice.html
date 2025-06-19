@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <style>
+        .main{
+            border: 3px solid black;
+        }
+        select{
+            width: 100%;
+            background-color: gray;
+            color: white;
+            margin-top: 40px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+        }
+        .productinfo{
+            display: flex;
+            justify-content: space-around;
+            
+        }
+        .add{
+            padding-top: 5px;
+            padding-bottom: 5px;
+            width: 80px;
+            margin-top: 35px;
+        }
+        .info{
+            display: flex;
+            justify-content:space-around;
+            margin-right: 0px;
+        }
+        .information{
+            display: flex;
+            justify-content: space-around;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .total{
+            text-align: right;
+            margin-left: 1020px;
+        }
+        /* #totalamount{
+            
+        } */
+        .remove{
+            padding-top: 5px;
+            padding-bottom: 5px;
+            width: 80px;   
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">INVOICE SLIP </h1>
+    <div class="main">
+        
+    <select id="select" oninput="firstinfo()">
+        <option disabled selected hidden>Select an Item</option>
+        <option value=200 id="price1">Coke</option>
+        <option value=150 id="price2">Pepsi</option>
+        <option value=540 id="price3">Oil</option>
+        <option value=130 id="price4">Soap</option>
+        <option value=220 id="price5">Shampoo</option>
+        <option value=240 id="price6">Biscuit</option>
+        <option value=300 id="price7">Eggs</option>
+        <option value=200 id="price8">Bread</option>
+        <option value=120 id="price9">Toothpaste</option>
+    </select>
+    <div class="productinfo mt-5 mb-5" id="productinfo">
+        <div class="price" id="price">
+            <h3>Price</h3>
+            <input type="text" name="" id="priceinfo">
+        </div>
+        <div class="quantity" id="quantity">
+            <h3>Quantity</h3>
+            <input type="number" name="" id="quantityinfo" oninput="firstinfo()">
+        </div>
+        <div class="amount" id="amount">
+            <h3>Amount</h3>
+            <input type="text" name="" id="amountinfo" oninput="firstinfo()">
+        </div>
+        <button class="add btn btn-secondary" id="add" onclick="add()">Add</button>
+    </div>
+    <hr style="color: blue;">
+    <div class="info" id="info">
+        <span>Serial-no</span>
+        <span>Product</span>
+        <span>Price</span>
+        <span>Quantity</span>
+        <span>Amount(Rs)</span>
+    </div>
+    <hr>
+    <div class="infocontainer" id="infocontainer">
+       
+    </div>
+    <hr>
+    <span class="total" id="total">Total price = </span><input type="number" style="border: none;"  id="totalamount">
+    <button class="print btn btn-dark w-100 mb-5 mt-5" id="print" onclick="print()">Print</button>
+</div>
+
+
+<script>
+    var infocontainer = document.getElementById('infocontainer')
+    var serialshow = document.getElementById('serialshow')
+    // var productshow = document.getElementById('productshow')
+    // var priceshow = document.getElementById('priceshow')
+    // var quantityshow = document.getElementById('quantityshow')
+    // var amountshow = document.getElementById('amountshow')
+    var select = document.getElementById('select')
+    var priceinfo = document.getElementById('priceinfo')
+    var quantityinfo = document.getElementById('quantityinfo')
+    var amountinfo = document.getElementById('amountinfo')
+    var total = document.getElementById('totalamount')
+    
+    let serial = 0
+    function firstinfo(){
+        priceinfo.value = select.value
+        amountinfo.value = priceinfo.value*quantityinfo.value
+    }
+    function add(){
+        let newdiv = document.createElement('div')
+        newdiv.classList.add('information')
+        newdiv.innerHTML = `
+            <span id="serialshow">${serial+1}</span>
+            <span id="productshow">${select.options[select.selectedIndex].text}</span>
+            <span id="priceshow">${priceinfo.value}</span>
+            <span id="quantityshow">${quantityinfo.value}</span>
+            <span id="amountshow">${amountinfo.value}</span>
+        `
+        infocontainer.appendChild(newdiv)
+        serial++
+        total.value = amountinfo.value + total.value
+    }
+
+</script>
+</body>
+</html>

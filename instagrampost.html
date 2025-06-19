@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Post</title>
+    <!-- Updated Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-color: rgba(5, 5, 5, 0.953);
+        }
+        .main{
+            /* border: 3px solid rgb(179, 173, 173); */
+            height: 700px;
+            width: 40%;
+            margin-left: 350px;
+            margin-top: 20px;
+            color: white;
+        }
+        .profile{
+            
+            border-radius: 100%;
+            width: 35px;
+            height: 35px;
+            margin-top: 30px;
+            margin-left: 50px;
+            position: relative;
+        }
+        .name{
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: 600;
+            position: absolute;
+            margin-top: 32px;
+        }
+        #posttime{
+            margin-left: 52px;
+            color: rgba(128, 128, 128, 0.71);
+            font-size: 9px;
+        }
+        .image{
+            margin: 10px 50px 0px 50px;
+            width: 430px;
+            height: 450px;
+        } 
+        .logos{ 
+            margin-left: 52px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .comment{
+            margin-left: 10px;
+        }
+        .infodiv{
+            position: relative;
+            display: inline-block;
+        }
+        .commentscreen{
+            position: absolute;
+            background: transparent;
+            border: 2px solid rgba(156, 149, 149, 0.851);
+            border-radius: 30px;
+            height: 630px;
+            width: 420px;
+           
+        }
+        #inputtext{
+            margin-top: 540px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            border: none;
+            margin-left: 10px;
+            padding: 15px;
+            background-color: rgba(64, 63, 63, 0.31);
+            width: 270px;
+            color: white;
+        }
+        #post{
+            border-radius: 20px;
+            border: none;
+            background-color: rgba(64, 63, 63, 0.31);
+            padding: 15px;
+            color: white;
+            width: 90px;
+            margin-left: 3px;
+            cursor: pointer;
+        }
+        .themesdiv{
+            background-color: rgba(241, 240, 240, 0.767);
+            margin-right: 1065px;
+            border-radius: 20px;
+            margin-left: 3px;
+        }
+        .themes{
+            /* margin-top: 10px; */
+            /* border-radius: 20px; */
+            padding: 10px;
+            border: none;
+            background-color: transparent;
+            width: 130px;
+            cursor: pointer;
+        }
+        .themes:hover{
+            background-color: rgb(214, 207, 199);
+        }
+        #light{
+            border-right: 1px solid rgb(112, 109, 109);
+            border-bottom-left-radius: 20px;
+        }
+        #dark{
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body id="body"> 
+    <div class="themesdiv" id="themesdiv">
+        <button class="themes" id="light" onclick="lighttheme()">Light</button>
+        <button class="themes" id="dark" onclick="darktheme()">Dark</button>
+    </div>
+
+    <div class="main" id="main" >
+        <div class="infodiv">
+            <div class="profileinfo" id="profileonfo">
+                <img src="image.jpg" alt="" class="profile">
+           <span class="name" id="name"></span> <br> <span id="posttime">Posted at: &nbsp; </span>
+            </div>
+        <img src="image.jpg" alt="" class="image" id="image" ondblclick="heartfill()">
+        </div>
+        
+        <div class="logos" id="logos">
+            <span class="heart fa-regular fa-heart" id="heart" onclick="heartfill()"></span>
+            <span class="comment  fa-regular fa-comment" id="comment" onclick="commentshow()"></span> 
+            <p style="font-size: 13px;"><span class="likes" id="likes" onclick="heartfill()" ></span>   <span>Likes</span></p>
+            <!-- <span style="font-size: 12px;">Comments :</span> <span id="showbelow" style="font-size: 12px;"></span> -->
+        </div>
+        <div hidden>
+            <span  class="heart2 fa-solid fa-heart" id="heart2" onclick="cancel()"></span>
+        </div>
+        <div style="display: none; " class="commentscreen image" id="commentscreen">
+            <div id="sendcontent"></div>
+                <input type="text" id="inputtext" placeholder="Write a comment">
+                <button id="post" onclick="comments()">Post</button>
+        </div>
+    </div>
+
+    <script>
+        function name(){
+            var name = document.getElementById("name")
+            name.innerText = prompt("Enter your name")
+        }
+        name()
+        //time
+        function timer(){
+            var posttime = document.getElementById('posttime')
+            var mydate = new Date()
+            var time = mydate.getHours()
+            var comma = ":"
+            var minutes = mydate.getMinutes()
+            posttime.innerText += time
+            posttime.innerText += comma
+            posttime.innerText += minutes
+        }
+        timer()
+
+        function heartfill(){
+            var likecounter = document.getElementById('likes')
+            var heart = document.getElementById('heart')
+            
+            var plainheart = heart.classList.contains('fa-regular')
+            let like = 0
+            let likedheart = like+1
+            
+            if(plainheart){
+                heart.classList.remove('fa-regular')
+                heart.classList.add('fa-solid')
+                heart.style.color = 'red';
+                likecounter.innerText = likedheart
+            }
+            else {
+                heart.classList.remove('fa-solid');
+                heart.classList.add('fa-regular');
+                heart.style.color = ''; 
+                likecounter.innerText = likedheart-1
+            }
+            
+        }
+        function commentshow(){
+          var comment = document.getElementById('comment')
+          var commentscreen = document.getElementById('commentscreen')
+
+          if(commentscreen.style.display === 'none'){
+            commentscreen.style.display = 'inline-block'
+
+
+        }
+          else{
+            commentscreen.style.display = 'none'
+          }
+
+        }
+        function comments(){
+            var send = document.getElementById('inputtext')
+            var show = document.getElementById('sendcontent')
+            var showbelow = document.getElementById('showbelow')
+            var name = document.getElementById('name')
+            var image = document.getElementById('image')
+            var username = name.textContent
+          
+            show.setAttribute(
+                "style",
+                "margin: 10px; margin-top: 20px; height: 20px; margin-top: 10px;"
+            )
+            
+            let inputText = send.value 
+            
+            if(inputText !== ""){
+                var message = document.createElement('div')
+                // message.textContent += image
+                message.textContent += username + ":"
+                message.textContent += inputText
+                show.appendChild(message)
+                // showbelow.appendChild(message)
+        
+        }
+        }
+        function lighttheme(){
+            var themesdiv = document.getElementById('themesdiv')
+            var post = document.getElementById('post')
+            var send = document.getElementById('inputtext')
+            var body = document.getElementById('body')
+            var main = document.getElementById('main')
+            var commentscreen = document.getElementById('commentscreen')
+            body.style.backgroundColor = ' rgba(231, 230, 230, 0.953)'
+            main.style.color = 'black'
+            send.style.backgroundColor = 'black'
+            post.style.backgroundColor = 'black'
+            commentscreen.style.backgroundColor = 'darkgray'
+            themesdiv.style.backgroundColor = 'lightblue'
+        }
+        function darktheme(){
+            var body = document.getElementById('body')
+            body.style.backgroundColor = 'rgba(5, 5, 5, 0.953)'
+            var main = document.getElementById('main')
+            var post = document.getElementById('post')
+            var send = document.getElementById('inputtext')
+            main.style.color = 'white'
+            send.style.backgroundColor = 'rgba(64, 63, 63, 0.31)'
+            post.style.backgroundColor = 'rgba(64, 63, 63, 0.31)'
+            commentscreen.style.background = 'transparent'
+        }
+        </script>
+</body>
+</html>

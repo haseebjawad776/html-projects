@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Maker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .flexdivs{
+            display: inline-block;
+            
+        }
+        #formdiv{
+            height: 1060px;
+            width: 350px;
+            background-color: rgba(104, 181, 68, 0.377);
+            position: relative;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        #infodiv{
+            position: absolute;
+            height: 1060px;
+            width: 350px;
+            background-color: rgba(207, 177, 8, 0.92);
+            margin-left: 45px;
+            
+            /* position: relative; */
+        }
+        #describediv{
+            position: absolute;
+            color: white;
+            height: 1060px;
+            width: 600px;
+            background-color: rgb(4, 7, 48);
+            margin-left: 395px;
+            
+        }
+        #hiddenform{
+            height: 1060px;
+            width: 350px;
+            background-color: rgba(104, 181, 68, 0.377);
+            /* border-bottom-right-radius: 10px; */
+            /* border-bottom-left-radius: 10px; */
+        }
+        .addinfo{
+            margin: 10px 0px 10px 10px;
+            border: none;
+            background-color: rgba(120, 165, 186, 0.951);
+            border-radius: 10px;
+            font-size: small;
+            padding: 6px;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="main" id="main">
+
+        <!-- cv input stage -->
+        <div class="flexdivs " id="formdiv" style="display:inline-block;">
+            <button class="btn btn-dark mt-3 ms-2" id="form2">First Form</button>
+            <button class="btn btn-dark mt-3 ms-5" id="form1" onclick="firstformchange()">Last Form</button>
+            <h2 style="font-weight: normal; margin-left: 5px; margin-top: 10px;"> Personal Information</h1>
+            <span style="margin-left: 13px;">First Name :</span> <input type="text" name="" id="firstname" style="margin-left: 2px; margin-top: 5px; padding: 5px; " oninput="cvshow()"><br>
+            <span style="margin-left: 13px; margin-top: 10px;">Last Name :</span> <input type="text" name="" id="lastname" style="padding: 5px; margin-top: 10px; margin-left: 3px;" oninput="cvshow()">
+            <span style="margin-left: 13px; margin-top: 10px;">Profession :</span> <input type="text" name="" id="profession" style="padding: 5px; margin-top: 10px; margin-left: 4px;" oninput="cvshow()">
+            <input type="file" name="" id="addimage" onchange="imageshow(this)" style="margin-top: 10px; margin-left: 10px;" >
+            
+
+            <hr style="color: blue;">
+
+            <h2 style="font-weight: normal; margin-left: 5px;"> Contact Info</h1>
+            <span style="margin-left: 13px; margin-top: 10px;">Phone No :</span> <input type="text" name="" id="phoneno" style="margin-left: 6px; padding: 5px; margin-top: 10px;" oninput="cvshow()"><br>
+            <span style="margin-left: 13px; margin-top: 10px;">Email-ID :</span> <input type="text" name="" id="email" style="padding: 5px; margin-left: 17px; margin-top: 10px;" oninput="cvshow()"><br>
+            <span style="margin-left: 13px; margin-top: 10px;">Linkedin :</span> <input type="text" name="" id="linkedin" style="padding: 5px; margin-left: 18px; margin-top: 10px;" oninput="cvshow()">
+            <hr style="color: blue;">
+
+            <h2 style="font-weight: normal; margin-left: 5px;">Address</h1>
+            <span style="margin-left: 13px; margin-top: 10px;">City :</span> <input type="text" name="" id="city" style="margin-left: 40px; padding: 5px; margin-top: 10px;" oninput="cvshow()"><br>
+            <span style="margin-left: 13px; margin-top: 10px;">Town :</span> <input type="text" name="" id="town" style="padding: 5px; margin-left: 30px; margin-top: 10px;" oninput="cvshow()"><br>
+            <span style="margin-left: 13px; margin-top: 10px;">Address :</span> <input type="text" name="" id="address" style="padding: 5px; margin-left: 10px; margin-top: 10px;" oninput="cvshow()">
+            <hr style="color: blue;">
+
+            <h2 style="font-weight: normal; margin-left: 5px;">Education</h1>
+                <span style="margin-left: 13px; margin-top: 10px;">Years :</span> <input type="text" name="" id="years" style="margin-left: 67px; padding: 5px; margin-top: 10px;" oninput="cvshow()"><br>
+                <span style="margin-left: 13px; margin-top: 10px;">Degree :</span> <input type="text" name="" id="degree" style="padding: 5px; margin-left: 53px; margin-top: 10px;" oninput="cvshow()"><br>
+                <span style="margin-left: 13px; margin-top: 10px;">Institute :</span> <input type="text" name="" id="institute" style="padding: 5px; margin-left: 47px; margin-top: 10px;" oninput="cvshow()"><br>
+                <span style="margin-left: 13px; margin-top: 10px;">Marks/CGPA :</span> <input type="text" name="" id="marks" style="padding: 5px; margin-left: 18px; margin-top: 10px;" oninput="cvshow()">
+                <div style="display: none;" id="hiddendiv">
+                    <hr style="color: blue;">
+                    <span style="margin-left: 13px; margin-top: 10px;">Years :</span> <input type="text" name="" id="hiddenyears" style="margin-left: 67px; padding: 5px; margin-top: 10px;" oninput="cvshow()"><br>
+                    <span style="margin-left: 13px; margin-top: 10px;">Degree :</span> <input type="text" name="" id="hiddendegree" style="padding: 5px; margin-left: 53px; margin-top: 10px;" oninput="cvshow()"><br>
+                    <span style="margin-left: 13px; margin-top: 10px;">Institute :</span> <input type="text" name="" id="hiddeninstitute" style="padding: 5px; margin-left: 47px; margin-top: 10px;" oninput="cvshow()"><br>
+                    <span style="margin-left: 13px; margin-top: 10px;">Marks/CGPA :</span> <input type="text" name="" id="hiddenmarks" style="padding: 5px; margin-left: 18px; margin-top: 10px;" oninput="cvshow()">
+                </div>
+
+                <button class="addinfo" id="addinfo" onclick="additionalinfo()">Add additional information</button>
+
+        </div>
+
+            <!-- hidden form -->
+        <div class="flexdivs" id="hiddenform" style="display: none;">
+                <button class="btn btn-dark mt-3 ms-2" onclick="secondformchange()">First Form</button>
+                <button class="btn btn-dark mt-3 ms-5" >Last Form</button>
+                <h1 style="margin-left: 10px; font-weight: 600;">Profile</h1>
+                <textarea style="margin-top: 20px; margin-left: 2px;" name="" id="profile" cols="44" rows="3" oninput="cvshow()"></textarea> <br>
+
+                <h1 style="margin-left: 10px; font-weight: 600; margin-top: 100px;">Experience</h1>
+                <textarea style="margin-top: 20px; margin-left: 2px;" name="" id="experience" cols="44" rows="3" oninput="cvshow()"></textarea> <br>
+
+                <h1 style="margin-left: 10px; font-weight: 600; margin-top: 100px;">Skills</h1>
+                <textarea style="margin-top: 20px; margin-left: 2px;" name="" id="skills" cols="44" rows="3" oninput="cvshow()"></textarea>
+
+                <h1 style="margin-left: 10px; font-weight: 600; margin-top: 100px;">Projects</h1>
+                <textarea style="margin-top: 20px; margin-left: 2px;" name="" id="projects" cols="44" rows="3" oninput="cvshow()"></textarea>
+
+                 <!-- <span style="margin-left: 13px; margin-top: 10px;">HTML :</span><input type="number" name="" id="html" oninput="cvshow()" style="margin-left: 30px; padding: 5px; margin-top: 10px;"><br>
+                 <span style="margin-left: 13px; margin-top: 10px;">CSS :</span><input type="number" name="" id="css" oninput="cvshow()" style="margin-left: 46px; padding: 5px; margin-top: 10px;"><br>
+                 <span style="margin-left: 13px; margin-top: 10px;">JavaScript :</span><input type="number" name="" id="js" oninput="cvshow()" style="margin-left: 3px; padding: 5px; margin-top: 10px;"> -->
+                
+        </div>
+
+            
+            <!-- cv 2nd stage -->   
+
+        <div class="flexdivs flexdivs1" id="infodiv">
+            <img src="download.jpeg" width="200" height="200" id="showimg"  style="border-radius: 100%; margin: 10px 0px 0px 75px;" alt="">
+            <h2 style="font-weight: 400; color: rgba(66, 64, 64, 0.622); text-align: center;" id="showname">Name</h2>
+            <h3 style="font-weight: 400; color: rgba(66, 64, 64, 0.587); text-align: center;" id="showprofession">Profession</h3>
+            <hr style="margin: 60px 40px 0px 40px;">
+
+            <h2 style="font-weight: 500; text-align: center; margin-top: 15px;">Contact Info</h2>
+           <p class="spans"> <span class="fa-solid fa-phone ms-4"></span> <span style="margin-left: 13px;" id="showphone"></span></p>
+           <p class="spans"> <span class="ms-4 fa-solid fa-at"></span> <span style="margin-left: 13px;" id="showmail"></span></p>
+           <p class="spans"> <span class="ms-4 fa-brands fa-linkedin-in"></span> <span style="margin-left: 13px;" id="showlinkedin"></span></p>
+            <hr style="margin: 50px 40px 0px 40px;">
+
+            <h2 style="font-weight: 500; text-align: center; margin-top: 15px;">Address Info</h2>
+           <p class="spans"> <span class="ms-4 fw-semibold">City :</span> <span id="showcity"></span></p>
+           <p class="spans"> <span class="ms-4 fw-semibold">Town :</span> <span id="showtown"></span></p>
+           <p class="spans"> <span class="ms-4 fw-semibold">Address :</span> <span id="showaddress"></span>
+            <hr style="margin: 50px 40px 0px 40px;">
+
+            <h2 style="font-weight: 500; text-align: center; margin-top: 15px;">Education</h2>
+           <p class="spans"> <span class="ms-4 fw-semibold">Years :</span> <span id="showyears"></span></p>
+           <p class="spans"> <span class="ms-4 fw-semibold">Degree :</span> <span id="showdegree"></span></p>
+           <p class="spans"> <span class="ms-4 fw-semibold">Institute :</span> <span id="showinstitute"></span></p>
+           <p class="spans"> <span class="ms-4 fw-semibold">Marks/CGPA :</span> <span id="showmarks"></span></p>
+
+           <div style="display: none;" id="2ndstagehiddendiv">
+            <hr style="margin: 50px 40px 50px 40px;">
+            <p class="spans"> <span class="ms-4 fw-semibold">Years :</span> <span id="showhiddenyears"></span></p>
+            <p class="spans"> <span class="ms-4 fw-semibold">Degree :</span> <span id="showhiddendegree"></span></p>
+            <p class="spans"> <span class="ms-4 fw-semibold">Institute :</span> <span id="showhiddeninstitute"></span></p>
+            <p class="spans"> <span class="ms-4 fw-semibold">Marks/CGPA :</span> <span id="showhiddenmarks"></span></p>
+           </div>
+
+           
+
+            
+
+        </div>
+
+
+        <!-- cv 3rd stage -->
+
+        <div class="flexdivs flexdivs1" id="describediv">
+            <h2 style="margin-left: 25px;  margin-top: 20px;">Profile</h2>
+            <p style="color: gray; word-wrap: break-word; font-weight: 500; margin-left: 40px;" id="showprofile">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, quas tempore minus laudantium repellendus provident eveniet. Inventore voluptates repudiandae repellat rem odit consequatur quod accusantium voluptatem tenetur animi, aliquam quam labore sequi quis, libero neque numquam hic dolorem asperiores exercitationem in qui quisquam? Porro commodi id consequuntur consecteturtatem voluptas laborum inventore, ea saepe veniam molestiae! Necessitatibus delectus porro nobis ab optio dolores dolorum numquam ipsa, tempore accusamus quis quaerat perspiciatis, reprehenderit maiores exercitationem blanditiis, atque inventore molestiae error. Nostrum magni quisquam eos pariatur, at placeat qui dol</p>
+            <h2 style="margin-left: 25px;  margin-top: 20px;">Experience</h2> 
+            <p style="color: gray; font-weight: 500; word-wrap: break-word; margin-left: 40px;" id="showexperience">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, quas tempore minus laudantium repellendus provident eveniet. Inventore voluptates repudiandae repellat rem odit consequatur quod accusantium voluptatem tenetur animi, aliquam quam labore sequi quis, libero neque numquam hic dolorem asperiores exercitationem in qui quisquam? Porro commodi id consequuntur consecteturtatem voluptas laborum inventore, ea saepe veniam molestiae! Necessitatibus delectus porro nobis ab optio dolores dolorum numquam ipsa, tempore accusamus quis quaerat perspiciatis, reprehenderit maiores exercitationem blanditiis, atque inventore molestiae error. Nostrum magni quisquam eos pariatur, at placeat qui dol</p>
+
+            <h2 style="margin-left: 25px; margin-top: 20px;">Skills</h2>
+            <p style="margin-left: 40px; color: gray; font-weight: 500; word-wrap: break-word;" id="showskills">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque velit labore maxime laudantium vero corrupti quos omnis eum mollitia? Delectus earum, officia modi inventore, iure magnam molestiae, placeat facere cum doloremque dolorum soluta. Corrupti possimus libero provident in, qui reiciendis aspernatur eaque! Rerum fugit, omnis nesciunt voluptatibus quidem exercitationem eveniet?</p>
+
+            <h2 style="margin-left: 25px; margin-top: 20px;">Projects</h2>
+            <p style="margin-left: 40px; color: gray; font-weight: 500; word-wrap: break-word;" id="showprojects">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque velit labore maxime laudantium vero corrupti quos omnis eum mollitia? Delectus earum, officia modi inventore, iure magnam molestiae, placeat facere cum doloremque dolorum soluta. Corrupti possimus libero provident in, qui reiciendis aspernatur eaque! Rerum fugit, omnis nesciunt voluptatibus quidem exercitationem eveniet?</p>
+
+            <!-- <div style="margin-top: 50px;">
+                <div style="border-radius: 50%; display: inline-block; margin-left: 30px; width: 90px; margin-top: 80px; height: 80px;" class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bg-warning" style="width: 100%; border-radius: 50%;  height: 80px; color: black; font-weight: 600; text-align: center;" id="htmlcircle">HTML</div>
+                </div>
+
+                <div style="border-radius: 50%; display: inline-block; margin-left: 110px; width: 90px; margin-top: 80px; height: 80px;" class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bg-transparent" style="width: 100%; border-radius: 50%; height: 80px; border: 10px solid green; color: black; font-weight: 600; text-align: center;" id="csscircle">CSS</div>
+                </div>
+            
+                <div style="border-radius: 50%; display: inline-block; margin-left: 150px; width: 90px; margin-top: 80px; height: 80px;" class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bg-transparent" style="width: 100%; border: 7px solid rgb(215, 152, 16); border-radius: 50%;  height: 80px; color: black; font-weight: 600; text-align: center;" id="jscircle">JS</div>
+                </div>
+            </div>    -->
+
+        </div>
+    </div>
+
+
+
+
+
+
+<script>
+    var html = document.getElementById('html')
+    var js = document.getElementById('js')
+    var css = document.getElementById('css')
+    var htmlcircle = document.getElementById("htmlcircle")
+    var csscircle = document.getElementById('csscircle')
+    var jscircle = document.getElementById('jscircle')
+    function cvshow(){
+        var firstname = document.getElementById('firstname')
+        var lastname = document.getElementById('lastname')
+        var profession = document.getElementById('profession')
+        var showname = document.getElementById('showname')
+        var showprofession = document.getElementById('showprofession')
+        var phoneno = document.getElementById('phoneno')
+        var email = document.getElementById('email')
+        var linkedin = document.getElementById('linkedin')
+        var city = document.getElementById('city')
+        var town = document.getElementById('town')
+        var address = document.getElementById('address')
+        var years = document.getElementById('years')
+        var degree = document.getElementById('degree')
+        var institute = document.getElementById('institute')
+        var marks = document.getElementById('marks')
+        var profile = document.getElementById('profile')
+        var experience = document.getElementById('experience')
+        var skills = document.getElementById('skills')
+        var projects = document.getElementById('projects')
+
+        var showphone = document.getElementById('showphone')
+        var showemail = document.getElementById('showmail')
+        var showlinkedin = document.getElementById('showlinkedin')
+        var showcity = document.getElementById('showcity')
+        var showtown = document.getElementById('showtown')
+        var showaddress = document.getElementById('showaddress')
+        var showyears = document.getElementById('showyears')
+        var showdegree = document.getElementById('showdegree')
+        var showinstitute = document.getElementById('showinstitute')
+        var showmarks = document.getElementById('showmarks')
+        var showprofile = document.getElementById('showprofile')
+        var showexperience = document.getElementById('showexperience')
+        var showskills = document.getElementById('showskills')
+        var showprojects = document.getElementById('showprojects')
+
+        var hiddenyears = document.getElementById('hiddenyears')
+        var hiddendegree = document.getElementById('hiddendegree')
+        var hiddeninstitute = document.getElementById('hiddeninstitute')
+        var hiddenmarks = document.getElementById('hiddenmarks')
+
+        var showhiddenyears = document.getElementById('showhiddenyears')
+        var showhiddendegree = document.getElementById('showhiddendegree')
+        var showhiddeninstitute = document.getElementById('showhiddeninstitute')
+        var showhiddenmarks = document.getElementById('showhiddenmarks')
+        
+        showname.innerText = firstname.value + lastname.value       
+        showprofession.innerText = profession.value
+        showphone.innerText = phoneno.value
+        showemail.innerText = email.value
+        showlinkedin.innerText = linkedin.value
+        showcity.innerText = city.value
+        showtown.innerText = town.value
+        showaddress.innerText = address.value
+        showyears.innerText = years.value
+        showdegree.innerText = degree.value
+        showinstitute.innerText = institute.value
+        showmarks.innerText = marks.value 
+        showprofile.innerText = profile.value
+        showexperience.innerText = experience.value
+        showskills.innerText = skills.value
+        showprojects.innerText = projects.value
+
+        showhiddenyears.innerText = hiddenyears.value
+        showhiddendegree.innerText = hiddendegree.value
+        showhiddeninstitute.innerText = hiddeninstitute.value
+        showhiddenmarks.innerText = hiddenmarks.value
+
+        showexperience.style.textTransform = "capitalize"
+        showprofile.style.textTransform = "capitalize"
+        
+
+        showname.style.color = "rgba(37, 37, 34, 0.92)"
+        showname.style.textTransform = "uppercase"
+        showprofession.style.color = "rgba(37, 37, 34, 0.92)"
+        showprofession.style.textTransform = "uppercase"
+    }
+    function imageshow(input){
+        const file = input.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              document.getElementById("showimg").src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+       }
+    }
+        
+    
+
+    function firstformchange(){
+        var firstform = document.getElementById('formdiv')
+        var secondform = document.getElementById('hiddenform')
+        firstform.style.display = "none"
+        secondform.style.display = "inline-block"
+    }
+    function secondformchange(){
+        var firstform = document.getElementById('hiddenform')
+        var secondform = document.getElementById('formdiv')
+         firstform.style.display = "none"
+        secondform.style.display = "inline-block"
+    }
+    function additionalinfo(){
+        var formdiv = document.getElementById('formdiv')
+        var hiddendiv = document.getElementById('hiddendiv')
+        var infohiddendiv = document.getElementById('2ndstagehiddendiv')
+        var infodiv = document.getElementById('infodiv')
+        var addbuton = document.getElementById("addinfo")
+
+        if(hiddendiv.style.display === 'none'){
+            hiddendiv.style.display = 'block'
+            formdiv.style.height = '1300px'
+            addbuton.innerText = 'Remove Information'
+        }
+          else{
+            hiddendiv.style.display = 'none'
+            formdiv.style.height = '1060px'
+            addbuton.innerText = 'Add Information'
+          }
+
+
+          if(infohiddendiv.style.display === 'none'){
+            infohiddendiv.style.display = 'block'
+            infodiv.style.height = '1300px'
+        }
+          else{
+            infohiddendiv.style.display = 'none'
+            infodiv.style.height = '1060px'
+          }
+    }
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock ⏰</title>
+  <style>
+    button{
+      border-radius: 10px;
+      margin-top: 20px;
+      margin-left: 570px;
+      padding: 10px;
+      width: 200px;
+      height: 40px;
+      border: none;
+      cursor: pointer;
+      background-color: aquamarine;
+    }
+    .clock{
+      color: darkgrey;
+      text-align: center;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-weight: bold;
+      font-size: 100px;
+    }
+    .analogclock{
+      border: 3px solid white;
+      margin-top: 90px;
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      margin-left: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .hand{
+      position: absolute;
+      transform-origin: 50% 100%;
+      bottom: 50%;
+      
+    }
+    #secondhand{
+      width: 2px;
+      height: 80px;
+      background-color: green;
+    }
+    #minutehand{
+      width: 4px;
+      height: 68px;
+      background-color: blue;
+    }
+    #hourhand{
+      width: 6px;
+      height: 46px;
+      background-color: red;
+    }
+
+    
+    
+  </style>
+</head>
+<body style="background-color: rgb(15, 15, 15)">
+  <h1 style="color: white; text-align: center;">Clock</h1>
+  <div class="clock" id="clock">00:00:00</div>
+  <button onclick="start() ; analog()" >Click to start</button>
+
+  <!-- Analog clock -->
+
+  <div class="analogclock" id="analogclock">
+    <div class="hand" id="secondhand"></div>
+    <div class="hand" id="minutehand"></div>
+    <div class="hand" id="hourhand"></div>
+  </div>
+ 
+
+  <script>
+    var analogclock = document.getElementById('analogclock')
+    var secondhand = document.getElementById('secondhand')
+    var minutehand = document.getElementById('minutehand')
+    var hourhand = document.getElementById('hourhand')
+    function start(){
+      var clock = document.getElementById('clock')
+      var mydate = new Date()
+      var hours = mydate.getHours()
+      var minutes =  mydate.getMinutes()
+      var seconds = mydate.getSeconds()
+      var analoghours = mydate.getHours()
+      clock.innerText = hours + ":" + minutes + ":" + seconds 
+     
+      const secondangle = seconds*6
+      const minuteAngle = minutes*6
+      const hourangle = hours*30
+
+
+      secondhand.style.transform  = `rotate(${secondangle}deg) `
+      minutehand.style.transform = `rotate(${minuteAngle}deg)`
+      hourhand.style.transform = `rotate(${hourangle}deg)`
+      setInterval(start,1000)  
+    }
+  </script>
+
+</body>
+</html>

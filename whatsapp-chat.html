@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat maker</title>
+    <style>
+        .main {
+            display: flex;
+
+        }
+
+        .chat1 {
+            border: 2px solid gray;
+            background-color: rgb(7, 5, 67);
+            height: 1000px;
+            width: 550px;
+            color: white;
+
+        }
+
+        .chat2 {
+            border: 2px solid gray;
+            background-color: rgb(5, 44, 63);
+            height: 1000px;
+            width: 550px;
+            margin-left: 300px;
+            color: white;
+        }
+
+        .top {
+            text-align: center;
+            border: 2px solid gray;
+        }
+
+        .time {
+            font-size: small;
+        }
+
+        .lower {
+            margin-top: 500px;
+            position: fixed;
+        }
+
+        #text1 {
+            border-radius: 20px;
+            border: none;
+            width: 400px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.767);
+            border: 1px solid gray;
+            margin-left: 10px;
+            color: white;
+        }
+
+        #send1 {
+            background-color: green;
+            margin-left: 10px;
+            width: 70px;
+            color: white;
+            height: 40px;
+            border-radius: 20px 0px 20px 0px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #text2 {
+            border-radius: 20px;
+            border: none;
+            width: 400px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.767);
+            border: 1px solid gray;
+            margin-left: 10px;
+            color: white;
+        }
+
+        #send2 {
+            background-color: green;
+            margin-left: 10px;
+            width: 70px;
+            color: white;
+            height: 40px;
+            border-radius: 20px 0px 20px 0px;
+            border: none;
+            cursor: pointer;
+        }
+        #sendcontent{
+            background-color: green;
+            background: repeat;
+        }
+    </style>
+</head>
+
+<body bgcolor="green">
+    <div class="main">
+        <!-- sender -->
+
+        <div class="chat1" id="chat1">
+            <div class="top" id="top1">
+                <p id="user1">User</p>
+                <p class="time" id="time1">Last Seen : &nbsp;&nbsp;</p>
+            </div>
+            <div class="sendcontent" id="sendcontent"></div>
+            <div class="lower" id="lower1">
+                <input type="text" id="text1"  placeholder="Enter the message">
+                <button id="send1" onclick="sendbutton1()">Send</button>
+        </div>
+        </div>
+        <!-- receiver -->
+
+        <div class="chat2" id="chat2">
+            <div class="top" id="top2">
+                <p id="user2">User</p>
+                <p class="time" id="time2">Last Seen : &nbsp;&nbsp;</p>
+            </div>
+            <div id="receivecontent"></div>
+            <div class="content" id="receivecontent"></div>
+            <div class="lower" id="lower2">
+                <input type="text" id="text2" placeholder="Enter the message">
+                <button id="send2" onclick="sendbutton2()">Send</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+
+
+        //username update 
+           function username()
+           {
+            var user1 = document.getElementById('user1')
+            var a = prompt("Enter user-1 name")
+            user1.replaceWith(a)
+
+            var user2 = document.getElementById('user2')
+            var b = prompt("Enter user-2 name")
+            user2.replaceWith(b)
+           }
+           username()
+
+
+
+        //timer   
+        function lastseen() {
+            var lasttime = document.getElementById('time1')
+            var mydate = new Date()
+            // var date = mydate.toLocaleTimeString()
+            var time = mydate.getHours()
+            var comma = ":"
+            var minutes = mydate.getMinutes()
+            lasttime.innerText += time
+            lasttime.innerText += comma
+            lasttime.innerText += minutes
+
+            var lasttime = document.getElementById('time2')
+            var mydate = new Date()
+            // var date = mydate.toLocaleTimeString()
+            var time = mydate.getHours()
+            var comma = ":"
+            var minutes = mydate.getMinutes()
+            lasttime.innerText += time
+            lasttime.innerText += comma
+            lasttime.innerText += minutes
+        }
+        lastseen()
+
+
+        //send to other person (message   --> send --> next person chat )
+        function sendbutton1()
+        {
+            var send = document.getElementById('text1')
+            var show = document.getElementById('sendcontent')
+            var showopposite = document.getElementById('receivecontent')
+            show.setAttribute(
+                "style",
+                "margin: 10px; background-color: green; width: 40%; height: 20px; margin-top: 10px;  word-wrap: break-word;"
+            )
+            let inputText = send.value 
+            if(inputText !== ""){
+                var message = document.createElement('div')
+                message.textContent = inputText
+                show.appendChild(message)
+
+                var messageopposite = document.createElement('div')
+                messageopposite.textContent = inputText
+                showopposite.appendChild(messageopposite)
+            }
+            showopposite.setAttribute(
+                "style",
+                " width: 40%; background-color: black; height: 20px;  margin-left: 250px; margin-top: 10px;  word-wrap: break-word;"
+            )
+
+            
+        }
+        
+//receiver
+        function sendbutton2(){
+
+            var send = document.getElementById('text2')
+            var show = document.getElementById('receivecontent')
+            var showopposite = document.getElementById('sendcontent')
+            show.setAttribute(
+                "style",
+                "margin: 10px; background-color: green;  width: 40%; height: 20px; margin-top: 10px;  word-wrap: break-word;"
+            )
+            
+            let inputText = send.value 
+            if(inputText !== ""){
+                var message = document.createElement('div')
+                message.textContent = inputText
+                show.appendChild(message)
+
+                var messageopposite = document.createElement('div')
+                messageopposite.textContent = inputText
+                showopposite.appendChild(messageopposite)
+            }
+            showopposite.setAttribute(
+                "style",
+                " width: 40%; background-color: black; margin-left: 250px; height: 20px;  margin-left: 250px; margin-top: 10px;  word-wrap: break-word;"
+                
+            )
+        }
+        
+        
+    </script>
+
+
+</body>
+
+</html>
